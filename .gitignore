@@ -1,12 +1,12 @@
 # Build outputs
-Debug/*.o
-Debug/*.d
-Debug/*.su
-Debug/*.elf
-Debug/*.map
-Debug/*.list
+Debug/**/*.o
+Debug/**/*.d
+Debug/**/*.su
+Debug/**/*.elf
+Debug/**/*.map
+Debug/**/*.list
 Debug/default.size.stdout
-Debug/*.cyclo
+Debug/**/*.cyclo
 
 # Optional editor files
 *.swp
