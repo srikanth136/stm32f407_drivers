@@ -47,7 +47,7 @@
  #define GPIOC_baseAddress = (AHB1_baseAddress + 0x0800U) /* Base address of GPIOC peripheral */
  #define GPIOD_baseAddress = (AHB1_baseAddress + 0x0C00U) /* Base address of GPIOD peripheral */
  #define GPIOE_baseAddress = (AHB1_baseAddress + 0x1000U) /* Base address of GPIOE peripheral */
- #define GPIOE_baseAddress = (AHB1_baseAddress + 0x1400U) /* Base address of GPIOF peripheral */
+ #define GPIOF_baseAddress = (AHB1_baseAddress + 0x1400U) /* Base address of GPIOF peripheral */
  #define GPIOG_baseAddress = (AHB1_baseAddress + 0x1800U) /* Base address of GPIOG peripheral */
  #define GPIOH_baseAddress = (AHB1_baseAddress + 0x1C00U) /* Base address of GPIOH peripheral */  
  #define GPIOI_baseAddress = (AHB1_baseAddress + 0x2000U) /* Base address of GPIOI peripheral */  
@@ -80,6 +80,6 @@
  #define EXTI_baseAddress = (APB2_baseAddress + 0x3C00U) /* Base address of EXTI peripheral */
  #define SPI1_baseAddress = (APB2_baseAddress + 0x3000U) /* Base address of SPI1 peripheral */
 
- 
+
 
 #endif /* INC_STM32F407XX_H_ */
