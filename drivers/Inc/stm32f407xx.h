@@ -54,6 +54,7 @@
 
  /* 
  Base address of peripherals hanging on APB1 bus domain
+ Different peripherals usart and uart is UART4 and UART5 does not work asynchronously with the other usart and uart peripherals.
  */
 
  #define I2C1_baseAddress = (APB1_baseAddress + 0x5400U) /* Base address of I2C1 peripheral */
@@ -78,5 +79,7 @@
  #define syscfg_baseAddress = (APB2_baseAddress + 0x3800U) /* Base address of SYSCFG peripheral */
  #define EXTI_baseAddress = (APB2_baseAddress + 0x3C00U) /* Base address of EXTI peripheral */
  #define SPI1_baseAddress = (APB2_baseAddress + 0x3000U) /* Base address of SPI1 peripheral */
+
+ 
 
 #endif /* INC_STM32F407XX_H_ */
