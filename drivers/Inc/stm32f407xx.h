@@ -86,8 +86,8 @@
 #define GPIOG_PCLK_EN() (RCC->AHB1ENR |= (1 << 6)) /* Enable clock for GPIOG peripheral */
 #define GPIOH_PCLK_EN() (RCC->AHB1ENR |= (1 << 7)) /* Enable clock for GPIOH peripheral */
 
- #define USB_OTG_FS_baseAddress (AHB2_baseAddress + 0x0000U) /* Base address of USB OTG FS peripheral */
- #define USB_OTG_HS_baseAddress (AHB2_baseAddress + 0x1000U) /* Base address of USB OTG HS peripheral */
+#define USB_OTG_FS_baseAddress (AHB2_baseAddress + 0x0000U) /* Base address of USB OTG FS peripheral */
+#define USB_OTG_HS_baseAddress (AHB2_baseAddress + 0x1000U) /* Base address of USB OTG HS peripheral */
 
 /* 
  clock Enable Macoros for i2c peripherals
