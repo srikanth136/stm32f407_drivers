@@ -227,6 +227,8 @@ uint16_t GPIO_WriteToOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t
  */
 void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi)
 {
+    
+
 }
 
 /*
@@ -246,4 +248,5 @@ void GPIO_IRQHandling(uint8_t PinNumber)
  */
 void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 {
+    pGPIOx->ODR ^= (1 << PinNumber); // Toggle the output data register at the bit field corresponding to the pin number
 }
