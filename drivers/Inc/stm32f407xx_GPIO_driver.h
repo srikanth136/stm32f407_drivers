@@ -19,7 +19,7 @@ typedef struct
     uint8_t GPIO_PinNumber; /* This holds the pin number of the GPIO pin */
     uint8_t GPIO_PinMode; /* This holds the mode of the GPIO pin @GPIO_PIN_MODES*/
     uint8_t GPIO_PinSpeed; /* This holds the speed of the GPIO pin */
-    uint8_t GPIO_PinPuPdControl; /* This holds the pull-up/pull-down configuration of the GPIO pin */
+    uint8_t GPIO_PinPuPd; /* This holds the pull-up/pull-down configuration of the GPIO pin */
     uint8_t GPIO_PinOPType; /* This holds the output type of the GPIO pin */
     uint8_t GPIO_PinAltFunMode; /* This holds the alternate function mode of the GPIO pin */
 } GPIO_PinConfig_t;
@@ -113,8 +113,35 @@ GPIO pin possible pull-up/pull-down configurations
 */
 #define GPIO_NO_PUPD 0 /* GPIO pin no pull-up/pull-down */
 #define GPIO_PIN_PU 1 /* GPIO pin pull-up */
-#define GPIO_PIN_PD 2 /* GPIO pin pull-down */      
+#define GPIO_PIN_PD 2 /* GPIO pin pull-down */   
+/*
+@GPIO_PinOPType
+GPIO pin possible output types
+*/
+#define GPIO_OP_TYPE_PP 0 /* GPIO pin push-pull output type */
+#define GPIO_OP_TYPE_OD 1 /* GPIO pin open-drain output type */
+#define GPIO_OP_TYPE_AF 2 /* GPIO pin alternate function output type */
+#define GPIO_OP_TYPE_ANALOG 3 /* GPIO pin analog output type */ 
+#define GPIO_OP_TYPE_IT 4 /* GPIO pin interrupt output type */
 
 /*
-
+@GPIO_PinAltFunMode
+GPIO pin possible alternate function modes
 */
+
+#define GPIO_AF0 0 /* GPIO pin alternate function mode 0 */
+#define GPIO_AF1 1 /* GPIO pin alternate function mode 1 */
+#define GPIO_AF2 2 /* GPIO pin alternate function mode 2 */
+#define GPIO_AF3 3 /* GPIO pin alternate function mode 3 */
+#define GPIO_AF4 4 /* GPIO pin alternate function mode 4 */
+#define GPIO_AF5 5 /* GPIO pin alternate function mode 5 */
+#define GPIO_AF6 6 /* GPIO pin alternate function mode 6 */
+#define GPIO_AF7 7 /* GPIO pin alternate function mode 7 */
+#define GPIO_AF8 8 /* GPIO pin alternate function mode 8 */
+#define GPIO_AF9 9 /* GPIO pin alternate function mode 9 */
+#define GPIO_AF10 10 /* GPIO pin alternate function mode 10 */
+#define GPIO_AF11 11 /* GPIO pin alternate function mode 11 */
+#define GPIO_AF12 12 /* GPIO pin alternate function mode 12 */
+#define GPIO_AF13 13 /* GPIO pin alternate function mode 13 */
+#define GPIO_AF14 14 /* GPIO pin alternate function mode 14 */
+#define GPIO_AF15 15 /* GPIO pin alternate function mode 15 */

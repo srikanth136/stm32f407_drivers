@@ -156,8 +156,8 @@
 #define USART6_PCLK_DI() (RCC->APB2ENR &= ~(1 << 5)) /* Disable clock for USART6 peripheral */
 
 /* 
- clock Enable Macoros for GPIOx peripherals
- 1. The clock disable macros are used to enable the clock for the GPIOx peripherals.
+ clock Disable Macoros for GPIOx peripherals
+ 1. The clock disable macros are used to disable the clock for the GPIOx peripherals.
 */
 #define GPIOA_PCLK_DI() (RCC->AHB1ENR &= ~(1 << 0)) /* Disable clock for GPIOA peripheral */
 #define GPIOB_PCLK_DI() (RCC->AHB1ENR &= ~(1 << 1)) /* Disable clock for GPIOB peripheral */
@@ -166,7 +166,7 @@
 #define GPIOE_PCLK_DI() (RCC->AHB1ENR &= ~(1 << 4)) /* Disable clock for GPIOE peripheral */
 #define GPIOF_PCLK_DI() (RCC->AHB1ENR &= ~(1 << 5)) /* Disable clock for GPIOF peripheral */
 #define GPIOG_PCLK_DI() (RCC->AHB1ENR &= ~(1 << 6)) /* Disable clock for GPIOG peripheral */
-#define GPIOH_PCLK_DI() (RCC->AHB1ENR &= ~(1 << 7)) /* Disable clock for GPIOH peripheral */    
+#define GPIOH_PCLK_DI() (RCC->AHB1ENR &= ~(1 << 7)) /* Disable clock for GPIOH peripheral */
 #define GPIOI_PCLK_DI() (RCC->AHB1ENR &= ~(1 << 8)) /* Disable clock for GPIOI peripheral */
 
 /*
@@ -257,7 +257,5 @@ typedef struct
 } RCC_RegDef_t;
 
 RCC_RegDef_t *pRCC = RCC;
-
-
 
 #endif /* INC_STM32F407XX_H_ */
