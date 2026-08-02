@@ -107,6 +107,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
     else
     {
         // Configure the pin for interrupt mode (falling edge, rising edge, both)
+        
     }
     temp = 0;
     //configure the speed
