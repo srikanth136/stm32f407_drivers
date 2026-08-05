@@ -107,6 +107,39 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
     else
     {
         // Configure the pin for interrupt mode (falling edge, rising edge, both)
+        /*
+        Pin must be in input configuration 
+        (RT,FT,RFT) to configure the edge trigger
+        Enable Interept delivery from peripheral to the processor on peripheral side using the EXTI_IMR register
+        identify IRQ numbers on which proccessor accepts the interrupt from the EXTI line using the EXTI_PR register
+        configuire the  IRQ priority for the identifies IRQ number (Processor side) using the NVIC_IPR register
+        Enable interrupt reception on that IRQ number (Processor side) using the NVIC_ISER register
+        implement IRQ handler
+        */
+       if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_FT)
+       {
+            //1. Configure the falling edge trigger selection register (FTSR)
+            EXTI->FTSR |= (1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+            // Clear the corresponding rising edge trigger selection register (RTSR) bit
+            EXTI->RTSR &= ~(1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+       }
+       else if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_RT)
+       {
+            //1. Configure the rising edge trigger selection register (RTSR)
+            EXTI->RTSR |= (1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+            // Clear the corresponding falling edge trigger selection register (FTSR) bit
+            EXTI->FTSR &= ~(1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+       }
+       else if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_RFT)
+       {
+            //1. Configure both rising and falling edge trigger selection registers
+            EXTI->RTSR |= (1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+            EXTI->FTSR |= (1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+       }
+         //2. Configure the GPIO port selection in the SYSCFG_EXTICR register   
+         
+         //3. Enable the EXTI interrupt delivery using the EXTI_IMR register
+         EXTI->IMR |= (1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
         
     }
     temp = 0;

@@ -14,6 +14,7 @@
 #include <stdint.h>
 
 // base adress of SRAM and flash memory
+#define EXTI_BASE_ADDRESS 0x40013C00U /* Base address of EXTI peripheral */
 #define flash_memory_baseAddress 0x08000000U /* Base address of flash memory */
 #define SRAM1_baseAddress 0x20000000U /* Base address of SRAM1 */
 #define SRAM2_baseAddress 0x2001C000U /* Base address of SRAM2 */
@@ -71,6 +72,8 @@
 #define RCC_baseAddress (AHB1_baseAddress + 0x3800U) /* Base address of RCC peripheral */   
 
 #define RCC ((RCC_RegDef_t *)RCC_baseAddress) /* RCC peripheral register definition structure */
+
+#define EXTI ((EXTI_RegDef_t *)EXTI_BASE_ADDRESS) /* EXTI peripheral register definition structure */
 
 /* 
  clock Enable Macoros for GPIOx peripherals
@@ -257,5 +260,25 @@ typedef struct
 } RCC_RegDef_t;
 
 RCC_RegDef_t *pRCC = RCC;
+
+/* GPIOA peripheral register definition structure */
+typedef struct
+{
+    volatile uint32_t IMR; /* EXTI interrupt mask register */
+    volatile uint32_t EMR; /* EXTI event mask register */
+    volatile uint32_t RTSR; /* EXTI rising trigger selection register */
+    volatile uint32_t FTSR; /* EXTI falling trigger selection register */
+    volatile uint32_t SWIER; /* EXTI software interrupt event register */
+    volatile uint32_t PR; /* EXTI pending register */
+} EXTI_RegDef_t;
+
+typedef struct
+{
+    volatile uint32_t MEMRMP; /* SYSCFG memory remap register */
+    volatile uint32_t PMC; /* SYSCFG peripheral mode configuration register */
+    volatile uint32_t EXTICR[4]; /* SYSCFG external interrupt configuration registers */
+    uint32_t RESERVED[2]; /* Reserved */
+    volatile uint32_t CMPCR; /* SYSCFG compensation cell control register */
+} SYSCFG_RegDef_t;
 
 #endif /* INC_STM32F407XX_H_ */
