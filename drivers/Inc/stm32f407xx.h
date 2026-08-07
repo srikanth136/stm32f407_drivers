@@ -13,6 +13,19 @@
 
 #include <stdint.h>
 
+/*
+ARM Cortex-Mx Processor NVIC ISERx register Adresses
+In the ARM Cortex-Mx processor, the NVIC (Nested Vectored Interrupt Controller) is responsible 
+for managing interrupts and exceptions. The NVIC provides a set of registers called 
+ISER (Interrupt Set-Enable Registers) that allow enabling or disabling specific 
+interrupts.
+The ISER registers are memory-mapped registers that can be accessed using their base addresses. The
+*/
+#define NVIC_ISER0_BASE_ADDRESS (volatile uint32_t*)0xE000E100U /* Base address of NVIC ISER0 register */
+#define NVIC_ISER1_BASE_ADDRESS (volatile uint32_t*)0xE000E104U /* Base address of NVIC ISER1 register */
+#define NVIC_ISER2_BASE_ADDRESS (volatile uint32_t*)0xE000E108U /* Base address of NVIC ISER2 register */
+#define NVIC_ISER3_BASE_ADDRESS (volatile uint32_t*)0xE000E10CU /* Base address of NVIC ISER3 register */
+
 // base adress of SRAM and flash memory
 #define EXTI_BASE_ADDRESS 0x40013C00U /* Base address of EXTI peripheral */
 #define flash_memory_baseAddress 0x08000000U /* Base address of flash memory */
@@ -21,6 +34,18 @@
 #define ROM_baseAddress 0x1FFF0000U /* Base address of ROM */
 #define SRAM SRAM1_baseAddress /* Alias for SRAM1 */
 
+/*
+ARM cortex Mx processor Priority Register Adress Calculation
+1. The priority registers are used to set the priority of the interrupts.
+2. The priority registers are located in the NVIC (Nested Vectored Interrupt Controller)
+3. The priority registers are 8-bit wide and are located at the base address of the NVIC.
+4. The priority registers are divided into 4 sections, each section is 8 bits wide.
+5. The priority registers are located at the base address of the NVIC + 0x300 + (IRQNumber / 4) * 4
+6. The priority registers are located at the base address of the NVIC + 0x300 + (IRQNumber
+*/
+
+#define NVIC_IPR_BASE_ADDRESS (volatile uint32_t*)0xE000E400U /* Base address of NVIC IPR register */
+#define NO_PR_BITS_IMPLEMENTED 4 /* Number of priority bits implemented in the NVIC */
 /*
  Different bus domains of the stm32f407xx MCU 
  Preiph_Base Types: APB1, APB2, AHB1, AHB2
@@ -33,7 +58,8 @@
  6. the offset of the APB2 and AHB1 and AHB2 peripherals are 0x0010000, 0x00020000, 0x00010000 respectively.
  
 
- */
+ /* This macro returns a code between 0 and 7 for a given GPIO base address*/
+ #define GET_GPIO_CODE(x) (((x) - GPIOA_baseAddress) / 0x400U)
 
  /*
  base address of APBx and AHBx bus domains
@@ -74,6 +100,8 @@
 #define RCC ((RCC_RegDef_t *)RCC_baseAddress) /* RCC peripheral register definition structure */
 
 #define EXTI ((EXTI_RegDef_t *)EXTI_BASE_ADDRESS) /* EXTI peripheral register definition structure */
+
+#define syscfg ((SYSCFG_RegDef_t *)syscfg_baseAddress) /* SYSCFG peripheral register definition structure */
 
 /* 
  clock Enable Macoros for GPIOx peripherals
@@ -281,4 +309,18 @@ typedef struct
     volatile uint32_t CMPCR; /* SYSCFG compensation cell control register */
 } SYSCFG_RegDef_t;
 
+/*
+IRQ(Interrupt Request) numbers of STM32F407x MCU
+1. The IRQ numbers are used to identify the interrupt source.
+*/
+#define IRQ_NO_EXTI0 6 /* EXTI line 0 interrupt */
+#define IRQ_NO_EXTI1 7 /* EXTI line 1 interrupt */
+#define IRQ_NO_EXTI2 8 /* EXTI line 2 interrupt */  
+#define IRQ_NO_EXTI3 9 /* EXTI line 3 interrupt */
+#define IRQ_NO_EXTI4 10 /* EXTI line 4 interrupt */
+#define IRQ_NO_EXTI9_5 23 /* EXTI lines 9 to 5 interrupt */
+#define IRQ_NO_EXTI15_10 40 /* EXTI lines 15 to 10 interrupt */
+
 #endif /* INC_STM32F407XX_H_ */
+
+
