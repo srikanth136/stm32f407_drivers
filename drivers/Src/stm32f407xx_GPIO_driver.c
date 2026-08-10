@@ -324,7 +324,7 @@ void GPIO_IRQHandling(uint8_t PinNumber)
     {
         //clear the pending register by writing 1 to it
         EXTI->PR |= (1 << PinNumber);
-    }
+     }
 
 }
 
